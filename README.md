@@ -49,7 +49,17 @@ license: (ISC)
 About to write to D:\ionic\BackendFotogramServe\package.json:
 Is this OK? (yes) y
 * con esto creo el package.json
-
+* Creo un index.ts 
+* Paso a terminal y si no tengo instalado control de versiones de TypeScrip 
+```
+npm install -g typescript
+tsc -v
+```
+* Escribo a continuaciòn en el terminal:
+```
+tsc index.js
+```
+y Se crera el .js
 
 
 
