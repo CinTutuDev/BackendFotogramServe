@@ -84,5 +84,18 @@ tsc --init
  ```
   nodemon dist
   ```
-
-
+## Instalaciones necesarias
+* Una a una:
+```
+npm install express<br>
+npm install body-parser<br>
+npm install cors<br>
+npm install mongoose<br>
+npm install express-fileupload<br>
+npm install jsonwebtoken<br>
+npm install bcrypt<br>
+```
+ * Ó de una vez
+ ```
+npm install express body-parser cors mongoose express-fileupload jsonwebtoken bcrypt
+```
