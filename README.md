@@ -68,7 +68,21 @@ node index.js
 ```
 tsc --init
 ```
-
-
+* Abromos el : tsconfig.json Y ponemos/descomentamos si no está 
+ "outDir": "dist/",  
+* Poner modo observador
+```
+ tsc -w
+ ```
+ 
+ ## Instalación de Nodemon de forma global
+ 
+ ```
+ npm install -g nodemon
+ ``` 
+ * Dentro del proyecto :
+ ```
+  nodemon dist
+  ```
 
 
