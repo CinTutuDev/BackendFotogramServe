@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/CinTutuDev/BackendFotogram/issues"
   },
-  "homepage": "https://github.com/CinTutuDev/BackendFotogram#readme"
+  "homepage": "https://github.com/CinTutuDev/BackendFotogram#readme",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
 }
