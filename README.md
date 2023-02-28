@@ -19,6 +19,16 @@ C:\Program Files\MongoDB\Server\6.0\bin
 ```
 mongod
 ```
+## Instalar Robo 3T
+
+```
+https://robomongo.org/
+```
+* Abrir lo 'Studio 3T'
+
+Crear a new connection:
+ ✔Manuelly configure my connection setting + next
+ ✔Rellenar con nombre de la bd, server(localhost)y port(27017)
 
 
 
