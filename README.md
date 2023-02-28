@@ -26,8 +26,8 @@ https://robomongo.org/
 ```
 * Abrir lo 'Studio 3T'
 
-Crear a new connection:
- ✔Manuelly configure my connection setting + next
+Crear a new connection:<br>
+ ✔Manuelly configure my connection setting + next <br>
  ✔Rellenar con nombre de la bd, server(localhost)y port(27017)
 
 
