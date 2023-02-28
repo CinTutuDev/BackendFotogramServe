@@ -10,4 +10,9 @@ export default class Server{
    this.app = express();
   }
 
+
+  start(callback : any ){
+   this.app.listen(this.port, callback)
+  }
+
 }
