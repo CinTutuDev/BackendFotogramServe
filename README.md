@@ -30,5 +30,26 @@ Crear a new connection:<br>
  ✔Manuelly configure my connection setting + next <br>
  ✔Rellenar con nombre de la bd, server(localhost)y port(27017)
 
+## Comienzo proyecto que es de node y para eso tiro este comando
+
+* Abro terminal en el proyecto y tiro el comando:
+```
+npm init
+```
+* Le damos a enter hasta yes 
+package name: (backendfotogramserve)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository: (https://github.com/CinTutuDev/BackendFotogram.git)
+keywords:
+author:
+license: (ISC)
+About to write to D:\ionic\BackendFotogramServe\package.json:
+Is this OK? (yes) y
+* con esto creo el package.json
+
+
 
 
