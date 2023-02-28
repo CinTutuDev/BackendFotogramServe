@@ -59,7 +59,16 @@ tsc -v
 ```
 tsc index.js
 ```
-y Se crera el .js
+* Y se crera el .js
+* Para ver el console.log('Hola Mundo');
+ ```
+node index.js
+```
+* Crear archivo compilaer de Ts
+```
+tsc --init
+```
+
 
 
 
