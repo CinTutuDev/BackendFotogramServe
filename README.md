@@ -99,3 +99,19 @@ npm install bcrypt<br>
  ```
 npm install express body-parser cors mongoose express-fileupload jsonwebtoken bcrypt
 ```
+## Para que funcionen tengo que tener corriendo:
+* En un terminal
+```
+tsc -w 
+```
+* Y en otro 
+```
+nodemon dist/
+```
+## Instalacion tipado
+´´´
+npm install @types/express --save-dev
+```
+
+
+
