@@ -1,7 +1,7 @@
-#👩‍💻 PrepararBackend
+# 👩‍💻 PrepararBackend
 Instalación MongoDB y más
 
-##🧲 URL para descargalo
+## 🧲 URL para descargalo
 
 ```
 https://www.mongodb.com/try/download/community
@@ -113,7 +113,7 @@ nodemon dist/
 npm install @types/express --save-dev
 ```
 
-##🧵 Creación de servicio REST
+## 🧵 Creación de servicio REST
 
 * 1º Creo carpeta de routes y archivo usuarios.ts
 * 2º Realizo petición:
