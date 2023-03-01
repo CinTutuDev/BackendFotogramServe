@@ -138,9 +138,9 @@ userRouter.get("/prueba", (rep: Request, res: Response) => {
 export default userRouter;
 ``` 
 * 3º Creo mi primera ruta en el index.ts
- ´´´
+```
  server.app.use("/user", userRouter);
- ´´´
+```
  * 4º Hago petición de prueba en Postman:
  
 ```
@@ -150,6 +150,11 @@ export default userRouter;
  <br>
  ![PeticionPostaman](https://user-images.githubusercontent.com/71487857/222087197-0c8ad51c-d748-4b55-85b8-d9ddd9c11c34.png)
 
- 
+ ## 🔌 Crear conexion a mongoDB 
+ * En index.ts
+ ```
+ //Conectar BD
+mongoose.connect('mongodb://127.0.0.1:27017/fotosgram');
+```
  
  
