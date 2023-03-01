@@ -16,7 +16,7 @@ server.app.use(body_parser_1.default.json());
 //Rutas de la app
 server.app.use("/user", usuario_1.default);
 //Conectar BD
-mongoose_1.default.connect('mongodb://127.0.0.1:27017/fotosgram');
+mongoose_1.default.connect("mongodb://127.0.0.1:27017/fotosgram");
 //Levantar Express
 server.start(() => {
     console.log(`Servidor corriendo en puerto${server.port}`);

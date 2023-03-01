@@ -1,7 +1,14 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const userModel_1 = require("../models/userModel");
+//Encriptado de contraseña
+//instalar:
+// npm install @types/bcrypt --save-dev
+const bcrypt_1 = __importDefault(require("bcrypt"));
 const userRouter = (0, express_1.Router)();
 /* hacer petición(GET, PUT, POSt....) */
 /* userRouter.get("/prueba", (rep: Request, res: Response) => {
@@ -18,21 +25,23 @@ userRouter.post("/create", (req, res) => {
     const user = {
         nombre: req.body.nombre,
         email: req.body.email,
-        password: req.body.password,
-        avatar: req.body.avatar
+        password: bcrypt_1.default.hashSync(req.body.password, 10),
+        avatar: req.body.avatar,
     };
     //Para GRABAR en BD
     // 1ºLlamo a mi modelo de usuario del userModel.ts:
     //luego lo pruebo en Postman
-    userModel_1.UserModel.create(user).then((userDB) => {
+    userModel_1.UserModel.create(user)
+        .then((userDB) => {
         res.json({
             ok: true,
             user: userDB,
         });
-    }).catch(err => {
+    })
+        .catch((err) => {
         res.json({
             ok: false,
-            err
+            err,
         });
     });
 });

@@ -1,6 +1,9 @@
 import { Router, Request, Response } from "express";
 import { UserModel } from "../models/userModel";
-
+//Encriptado de contraseña
+//instalar:
+// npm install @types/bcrypt --save-dev
+import bcrypt from 'bcrypt'
 const userRouter = Router();
 
 /* hacer petición(GET, PUT, POSt....) */
@@ -20,25 +23,27 @@ userRouter.post("/create", (req: Request, res: Response) => {
   const user = {
     nombre: req.body.nombre,
     email: req.body.email,
-    password: req.body.password,
-    avatar: req.body.avatar
+    password: bcrypt.hashSync(req.body.password, 10),
+    avatar: req.body.avatar,
   };
 
   //Para GRABAR en BD
   // 1ºLlamo a mi modelo de usuario del userModel.ts:
   //luego lo pruebo en Postman
 
-  UserModel.create(user).then((userDB) => {
-    res.json({
-      ok: true,
-      user: userDB,
+  UserModel.create(user)
+    .then((userDB) => {
+      res.json({
+        ok: true,
+        user: userDB,
+      });
+    })
+    .catch((err) => {
+      res.json({
+        ok: false,
+        err,
+      });
     });
-  }).catch(err =>{
-    res.json({
-      ok: false,
-      err
-    });
-  });
 });
 
 export default userRouter;
