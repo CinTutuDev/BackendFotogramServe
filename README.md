@@ -150,7 +150,7 @@ export default userRouter;
  <br>
  ![PeticionPostaman](https://user-images.githubusercontent.com/71487857/222087197-0c8ad51c-d748-4b55-85b8-d9ddd9c11c34.png)
 
- ## Crear conexion a mongoDB 
+ ## 🔌 Crear conexion a mongoDB 
  * En index.ts
  ```
  //Conectar BD
