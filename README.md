@@ -231,7 +231,19 @@ userRouter.post("/create", (req: Request, res: Response) => {
   };
   ```
 
-
+## Crear token 
+* Se encuentra
+<br>
+class\token.ts
+ 
+* importar 
+```
+import jwt from "jsonwebtoken";
+```
+* Instalar
+```
+npm i --save-dev @types/jsonwebtoken --save-dev
+```
 
 
 
