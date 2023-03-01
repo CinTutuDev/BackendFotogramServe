@@ -7,9 +7,9 @@ Instalación MongoDB y más
 https://www.mongodb.com/try/download/community
 ```
 ## 🎮 Comandos de mongoDB
-´´´
+```
 https://geekflare.com/es/mongodb-queries-examples/
-´´´
+```
 ## Tutorial que seguí
 
 ```
@@ -156,5 +156,54 @@ export default userRouter;
  //Conectar BD
 mongoose.connect('mongodb://127.0.0.1:27017/fotosgram');
 ```
+ ## Creo y verifico mi petición desde el Postman y lo recibo en mi servidor REST
+ * En usuarios.ts
+ ```
+ //Ruta que voy a llamar para insertar BD
+userRouter.post("/create", (req: Request, res: Response) => {
+  //req es la respuesta al posteo y el body es del bodyParse
+  const user = {
+    nombre: req.body.nombre,
+    email: req.body.email,
+    password: req.body.password,
+  };
+
+  res.json({
+    ok: true,
+    user
+  });
+});
+```
+* En Postman hago la prueba: 
+<br>
  
- 
+![PostamanPostNamePass](https://user-images.githubusercontent.com/71487857/222143987-d79f9a4d-f380-4bb1-b185-ff3c39ecd51b.PNG)
+
+## Para grabar insercion basica en BD
+1º usuarios.ts
+```
+userRouter.post("/create", (req: Request, res: Response) => {
+  //req es la respuesta al posteo y el body es del bodyParse
+  //Info basic para inserción en mi bd
+  const user = {
+    nombre: req.body.nombre,
+    email: req.body.email,
+    password: req.body.password,
+  };
+
+  //Para GRABAR en BD
+  // 1ºLlamo a mi modelo de usuario del userModel.ts:
+  //luego lo pruebo en Postman
+
+  UserModel.create(user).then((userDB) => {
+    res.json({
+      ok: true,
+      user: userDB,
+    });
+  });
+});
+```
+2º Probar en Postman y debe salir una cosa similar a esto:
+<br>
+![PrimeraInsercionPostman](https://user-images.githubusercontent.com/71487857/222168806-331b51ee-81ee-4ff5-ac63-769e2980c76f.png)
+
