@@ -133,4 +133,19 @@ userRouter.get("/prueba", (rep: Request, res: Response) => {
 
 export default userRouter;
 ``` 
+* 3º Creo mi primera ruta en el index.ts
+ ´´´
+ server.app.use("/user", userRouter);
+ ´´´
+ * 4º Hago petición de prueba en Postman:
+ 
+```
+ http://localhost:3000/user/prueba
+``` 
+ Quedando así:
+ <br>
+ ![PeticionPostaman](https://user-images.githubusercontent.com/71487857/222087197-0c8ad51c-d748-4b55-85b8-d9ddd9c11c34.png)
 
+ 
+ 
+ 
