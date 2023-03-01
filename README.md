@@ -109,7 +109,7 @@ tsc -w
 nodemon dist/
 ```
 ## Instalacion tipado
-´´´
+```
 npm install @types/express --save-dev
 ```
 
