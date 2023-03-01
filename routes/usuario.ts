@@ -1,24 +1,40 @@
 import { Router, Request, Response } from "express";
-import { Usuario } from "../models/userModel";
+import { IUsuario, Usuario } from "../models/userModel";
 //Encriptado de contraseña
 //instalar:
 // npm install @types/bcrypt --save-dev
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
+import Token from "../class/token";
 
-const userRouters = Router();
+const userRoutes = Router();
 
-/* hacer petición(GET, PUT, POSt....) */
+//CREAR LOGIN
+userRoutes.post("/login", (req: Request, res: Response)  => {
+  const body = req.body;
 
-/* userRouter.get("/prueba", (rep: Request, res: Response) => {
-  res.json({
-    ok: true,
-    mensaje: "Tu petición ha salido bien!!!",
+  Usuario.findOne({ email: body.email }).then((user) => {
+    if (!user) {
+      res.json({ ok: false, message: "User or password incorrect" });
+    } else {
+      if (!bcrypt.compareSync(body.password, user.password)) {
+        res.json({ ok: false, message: "User or password incorrect" });
+      } else {
+        const tokenUser = Token.getJwtToken({
+          _id: user._id,
+          nombre: user.nombre,
+          email: user.email,
+          avatar: user.avatar,
+        });
+        res.json({ ok: true, token: tokenUser });
+      }
+    }
   });
 });
- */
+/* hacer petición(GET, PUT, POSt....) */
 
+//CREAR USUARIO
 //Ruta que voy a llamar para insertar BD
-userRouters.post('/create', (req: Request, res: Response) => {
+userRoutes.post("/create", (req: Request, res: Response) => {
   //req es la respuesta al posteo y el body es del bodyParse
   //Info basic para inserción en mi bd
   const user = {
@@ -34,9 +50,16 @@ userRouters.post('/create', (req: Request, res: Response) => {
 
   Usuario.create(user)
     .then((userDB) => {
+      const tokenUser = Token.getJwtToken({
+        _id: userDB._id,
+        nombre: userDB.nombre,
+        email: userDB.email,
+        avatar: userDB.avatar,
+      });
+
       res.json({
         ok: true,
-        user: userDB,
+        token: tokenUser,
       });
     })
     .catch((err) => {
@@ -47,4 +70,4 @@ userRouters.post('/create', (req: Request, res: Response) => {
     });
 });
 
-export default userRouters;
+export default userRoutes;

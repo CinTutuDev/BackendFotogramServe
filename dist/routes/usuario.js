@@ -9,17 +9,35 @@ const userModel_1 = require("../models/userModel");
 //instalar:
 // npm install @types/bcrypt --save-dev
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const userRouters = (0, express_1.Router)();
-/* hacer petición(GET, PUT, POSt....) */
-/* userRouter.get("/prueba", (rep: Request, res: Response) => {
-  res.json({
-    ok: true,
-    mensaje: "Tu petición ha salido bien!!!",
-  });
+const token_1 = __importDefault(require("../class/token"));
+const userRoutes = (0, express_1.Router)();
+//CREAR LOGIN
+userRoutes.post("/login", (req, res) => {
+    const body = req.body;
+    userModel_1.Usuario.findOne({ email: body.email }).then((user) => {
+        if (!user) {
+            res.json({ ok: false, message: "User or password incorrect" });
+        }
+        else {
+            if (!bcrypt_1.default.compareSync(body.password, user.password)) {
+                res.json({ ok: false, message: "User or password incorrect" });
+            }
+            else {
+                const tokenUser = token_1.default.getJwtToken({
+                    _id: user._id,
+                    nombre: user.nombre,
+                    email: user.email,
+                    avatar: user.avatar,
+                });
+                res.json({ ok: true, token: tokenUser });
+            }
+        }
+    });
 });
- */
+/* hacer petición(GET, PUT, POSt....) */
+//CREAR USUARIO
 //Ruta que voy a llamar para insertar BD
-userRouters.post('/create', (req, res) => {
+userRoutes.post("/create", (req, res) => {
     //req es la respuesta al posteo y el body es del bodyParse
     //Info basic para inserción en mi bd
     const user = {
@@ -33,9 +51,15 @@ userRouters.post('/create', (req, res) => {
     //luego lo pruebo en Postman
     userModel_1.Usuario.create(user)
         .then((userDB) => {
+        const tokenUser = token_1.default.getJwtToken({
+            _id: userDB._id,
+            nombre: userDB.nombre,
+            email: userDB.email,
+            avatar: userDB.avatar,
+        });
         res.json({
             ok: true,
-            user: userDB,
+            token: tokenUser,
         });
     })
         .catch((err) => {
@@ -45,4 +69,4 @@ userRouters.post('/create', (req, res) => {
         });
     });
 });
-exports.default = userRouters;
+exports.default = userRoutes;
