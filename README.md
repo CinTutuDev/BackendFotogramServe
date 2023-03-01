@@ -207,3 +207,36 @@ userRouter.post("/create", (req: Request, res: Response) => {
 <br>
 ![PrimeraInsercionPostman](https://user-images.githubusercontent.com/71487857/222168806-331b51ee-81ee-4ff5-ac63-769e2980c76f.png)
 
+## 🔐 Encriptar contraseña 
+* Ir a usuario.ts e importar e instalar:
+```
+//Encriptado de contraseña
+//instalar:
+// npm install @types/bcrypt --save-dev
+import bcrypt from 'bcrypt';
+```
+* Vamos a la funcion de crear y ponemos en el password:
+```
+userRouter.post("/create", (req: Request, res: Response) => {
+  //req es la respuesta al posteo y el body es del bodyParse
+  //Info basic para inserción en mi bd
+  const user = {
+    nombre: req.body.nombre,
+    email: req.body.email,
+    
+    //le ponemos la cantidad de vueltas
+    password: bcrypt.hashSync(req.body.password, 10),
+    
+    avatar: req.body.avatar,
+  };
+  ```
+
+
+
+
+
+
+
+
+
+
