@@ -9,3 +9,4 @@ userRouter.get("/prueba", (rep, res) => {
         mensaje: "Tu petición ha salido bien!!!",
     });
 });
+exports.default = userRouter;
