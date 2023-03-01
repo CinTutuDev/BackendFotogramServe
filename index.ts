@@ -1,8 +1,7 @@
-import Server from './class/server';
+import Server from "./class/server";
 
+const server = new Server();
 
-const server = new Server;
-
-server.start(()=>{
- console.log(`Servidor corriendo en puerto${server.port}`);
+server.start(() => {
+  console.log(`Servidor corriendo en puerto${server.port}`);
 });
