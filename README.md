@@ -7,9 +7,9 @@ Instalación MongoDB y más
 https://www.mongodb.com/try/download/community
 ```
 ## 🎮 Comandos de mongoDB
-´´´
+```
 https://geekflare.com/es/mongodb-queries-examples/
-´´´
+```
 ## Tutorial que seguí
 
 ```
