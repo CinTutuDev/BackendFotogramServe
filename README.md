@@ -1,7 +1,7 @@
-# PrepararBackend
+# 👩‍💻 PrepararBackend
 Instalación MongoDB y más
 
-## URL para descargalo
+## 🧲 URL para descargalo
 
 ```
 https://www.mongodb.com/try/download/community
@@ -113,5 +113,39 @@ nodemon dist/
 npm install @types/express --save-dev
 ```
 
+## 🧵 Creación de servicio REST
 
+* 1º Creo carpeta de routes y archivo usuarios.ts
+* 2º Realizo petición:
+```
+import { Router, Request, Response } from "express";
 
+const userRouter = Router();
+
+/* hacer petición(GET, PUT, POSt....) */
+
+userRouter.get("/prueba", (rep: Request, res: Response) => {
+  res.json({
+    ok: true,
+    mensaje: "Tu petición ha salido bien!!!",
+  });
+});
+
+export default userRouter;
+``` 
+* 3º Creo mi primera ruta en el index.ts
+ ´´´
+ server.app.use("/user", userRouter);
+ ´´´
+ * 4º Hago petición de prueba en Postman:
+ 
+```
+ http://localhost:3000/user/prueba
+``` 
+ Quedando así:
+ <br>
+ ![PeticionPostaman](https://user-images.githubusercontent.com/71487857/222087197-0c8ad51c-d748-4b55-85b8-d9ddd9c11c34.png)
+
+ 
+ 
+ 
