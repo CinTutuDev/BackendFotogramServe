@@ -9,7 +9,7 @@ const userModel_1 = require("../models/userModel");
 //instalar:
 // npm install @types/bcrypt --save-dev
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const userRouter = (0, express_1.Router)();
+const userRouters = (0, express_1.Router)();
 /* hacer petición(GET, PUT, POSt....) */
 /* userRouter.get("/prueba", (rep: Request, res: Response) => {
   res.json({
@@ -19,7 +19,7 @@ const userRouter = (0, express_1.Router)();
 });
  */
 //Ruta que voy a llamar para insertar BD
-userRouter.post("/create", (req, res) => {
+userRouters.post('/create', (req, res) => {
     //req es la respuesta al posteo y el body es del bodyParse
     //Info basic para inserción en mi bd
     const user = {
@@ -31,7 +31,7 @@ userRouter.post("/create", (req, res) => {
     //Para GRABAR en BD
     // 1ºLlamo a mi modelo de usuario del userModel.ts:
     //luego lo pruebo en Postman
-    userModel_1.UserModel.create(user)
+    userModel_1.Usuario.create(user)
         .then((userDB) => {
         res.json({
             ok: true,
@@ -45,4 +45,4 @@ userRouter.post("/create", (req, res) => {
         });
     });
 });
-exports.default = userRouter;
+exports.default = userRouters;
