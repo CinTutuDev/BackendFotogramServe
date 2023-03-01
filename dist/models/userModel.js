@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.UserModel = void 0;
 const mongoose_1 = require("mongoose");
 //Creacion modelo Base Datos
 const userSchema = new mongoose_1.Schema({
@@ -22,4 +22,5 @@ const userSchema = new mongoose_1.Schema({
         required: [true, "El pass es necesario"],
     },
 });
-exports.User = (0, mongoose_1.model)("User", userSchema);
+//Modelo de usuario UserModel !!!!
+exports.UserModel = (0, mongoose_1.model)("User", userSchema);

@@ -10,6 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const server = new server_1.default();
 //Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
+//urlencoded --> x-wwww-form-urlencoded
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 //Rutas de la app

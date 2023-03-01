@@ -29,4 +29,5 @@ interface IUser extends Document {
   password: string;
 }
 
-export const User = model<IUser>("User", userSchema);
+//Modelo de usuario UserModel !!!!
+export const UserModel = model<IUser>("User", userSchema);

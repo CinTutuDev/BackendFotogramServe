@@ -1,4 +1,5 @@
 import { Router, Request, Response } from "express";
+import { UserModel } from "../models/userModel";
 
 const userRouter = Router();
 
@@ -13,14 +14,30 @@ const userRouter = Router();
  */
 
 //Ruta que voy a llamar para insertar BD
-userRouter.post("/create", (rep: Request, res: Response) => {
+userRouter.post("/create", (req: Request, res: Response) => {
+  //req es la respuesta al posteo y el body es del bodyParse
+  //Info basic para inserción en mi bd
+  const user = {
+    nombre: req.body.nombre,
+    email: req.body.email,
+    password: req.body.password,
+    avatar: req.body.avatar
+  };
 
-  
+  //Para GRABAR en BD
+  // 1ºLlamo a mi modelo de usuario del userModel.ts:
+  //luego lo pruebo en Postman
 
-
-  res.json({
-    ok: true,
-    mensaje: "Tu petición ha salido bien!!!",
+  UserModel.create(user).then((userDB) => {
+    res.json({
+      ok: true,
+      user: userDB,
+    });
+  }).catch(err =>{
+    res.json({
+      ok: false,
+      err
+    });
   });
 });
 
