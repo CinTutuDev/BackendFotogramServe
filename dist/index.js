@@ -7,7 +7,11 @@ const server_1 = __importDefault(require("./class/server"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
 //mongosee es para conectar BD
 const mongoose_1 = __importDefault(require("mongoose"));
+const body_parser_1 = __importDefault(require("body-parser"));
 const server = new server_1.default();
+//Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
+server.app.use(body_parser_1.default.urlencoded({ extended: true }));
+server.app.use(body_parser_1.default.json());
 //Rutas de la app
 server.app.use("/user", usuario_1.default);
 //Conectar BD

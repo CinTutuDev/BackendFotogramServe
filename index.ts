@@ -2,8 +2,13 @@ import Server from "./class/server";
 import userRouter from "./routes/usuario";
 //mongosee es para conectar BD
 import mongoose from 'mongoose';
+import bodyParser from "body-parser";
 
 const server = new Server();
+
+//Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
+server.app.use(bodyParser.urlencoded({extended: true})); 
+server.app.use(bodyParser.json()); 
 
 //Rutas de la app
 server.app.use("/user", userRouter);
