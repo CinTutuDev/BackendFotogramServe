@@ -113,5 +113,24 @@ nodemon dist/
 npm install @types/express --save-dev
 ```
 
+##🧵 Creación de servicio REST
 
+* 1º Creo carpeta de routes y archivo usuarios.ts
+* 2º Realizo petición:
+```
+import { Router, Request, Response } from "express";
+
+const userRouter = Router();
+
+/* hacer petición(GET, PUT, POSt....) */
+
+userRouter.get("/prueba", (rep: Request, res: Response) => {
+  res.json({
+    ok: true,
+    mensaje: "Tu petición ha salido bien!!!",
+  });
+});
+
+export default userRouter;
+``` 
 
