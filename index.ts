@@ -9,8 +9,7 @@ const server = new Server();
 server.app.use("/user", userRouter);
 
 //Conectar BD
-mongoose.connect('mongodb://localhost:27017/fotosgram'); 
-
+mongoose.connect('mongodb://127.0.0.1:27017/fotosgram');
 
 //Levantar Express
 server.start(() => {

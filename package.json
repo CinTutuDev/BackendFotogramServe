@@ -24,6 +24,8 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.0",
+    "nodemon": "^2.0.20",
+    "npx": "^10.2.2",
     "typescript": "^4.9.5"
   },
   "devDependencies": {
