@@ -5,11 +5,12 @@ import { IUsuario, Usuario } from "../models/userModel";
 // npm install @types/bcrypt --save-dev
 import bcrypt from "bcrypt";
 import Token from "../class/token";
+import { verificaToken } from "../middlewares/autentication";
 
 const userRoutes = Router();
 
-//CREAR LOGIN
-userRoutes.post("/login", (req: Request, res: Response)  => {
+//-*-------------------------------------------------CREAR LOGIN-----------------------------
+userRoutes.post("/login", (req: Request, res: Response) => {
   const body = req.body;
 
   Usuario.findOne({ email: body.email }).then((user) => {
@@ -32,7 +33,7 @@ userRoutes.post("/login", (req: Request, res: Response)  => {
 });
 /* hacer petición(GET, PUT, POSt....) */
 
-//CREAR USUARIO
+//---------------------------------------------------CREAR USUARIO------------------------------
 //Ruta que voy a llamar para insertar BD
 userRoutes.post("/create", (req: Request, res: Response) => {
   //req es la respuesta al posteo y el body es del bodyParse
@@ -44,7 +45,7 @@ userRoutes.post("/create", (req: Request, res: Response) => {
     avatar: req.body.avatar,
   };
 
-  //Para GRABAR en BD
+  //---------------Para GRABAR en BD---------------
   // 1ºLlamo a mi modelo de usuario del userModel.ts:
   //luego lo pruebo en Postman
 
@@ -68,6 +69,17 @@ userRoutes.post("/create", (req: Request, res: Response) => {
         err,
       });
     });
+});
+
+//-------------------------------------------------------ACTUALIZAR USUARIOS------------------------------
+
+userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
+  //Antes necesito verificar que el Token sea valido --> middlewares\autentication.ts
+  //middlewares --> se ejecuta antes de la ruta ... esta
+  res.json({
+    ok: true,
+    usuario: req.usuario,
+  });
 });
 
 export default userRoutes;
