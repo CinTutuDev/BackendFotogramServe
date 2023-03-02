@@ -269,7 +269,7 @@ export const verificaToken = (req: any, res: Response, next: NextFunction) => {
 ```
 * Lo que hace es verificar antes de entrar en cualquier llamada y se puede user tanto para crear, borrar, grabar...
 * Su sintaxis ej:
- ´´´
+```
 userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
   //Antes necesito verificar que el Token sea valido --> middlewares\autentication.ts
   //middlewares --> se ejecuta antes de la ruta ... esta
@@ -278,7 +278,7 @@ userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
     usuario: req.usuario,
   });
 });
-```` 
+```
 
 
 
