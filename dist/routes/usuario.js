@@ -35,7 +35,6 @@ userRoutes.post("/login", (req, res) => {
         }
     });
 });
-/* hacer petición(GET, PUT, POSt....) */
 //---------------------------------------------------CREAR USUARIO------------------------------
 //Ruta que voy a llamar para insertar BD
 userRoutes.post("/create", (req, res) => {
