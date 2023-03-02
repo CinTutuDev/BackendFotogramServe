@@ -301,5 +301,7 @@ userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
 });
 ```
 
+## Muestra con Postman de que funciona post 🏑 \routes\post.ts
+![PostCorrecto](https://user-images.githubusercontent.com/71487857/222498342-60c91c27-018d-4daf-ae37-4a0e6a1d5d22.png)
 
 
