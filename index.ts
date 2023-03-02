@@ -1,8 +1,9 @@
 import Server from "./class/server";
-import userRouters from "./routes/usuario";
 //mongosee es para conectar BD
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
+import postRoutes from "./routes/post";
+import userRoutes from "./routes/usuario";
 
 const server = new Server();
 
@@ -11,8 +12,10 @@ const server = new Server();
 server.app.use( bodyParser.urlencoded({ extended: true }));
 server.app.use( bodyParser.json() );
 
-//Rutas de la app
-server.app.use("/user", userRouters);
+//Rutas de la app usuarios
+server.app.use("/user", userRoutes);
+//ruta post
+server.app.use("/posts", postRoutes);
 
 //Conectar BD
 mongoose.connect("mongodb://127.0.0.1:27017/fotosgramTutu");
