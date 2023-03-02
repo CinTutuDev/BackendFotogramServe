@@ -245,10 +245,40 @@ import jwt from "jsonwebtoken";
 npm i --save-dev @types/jsonwebtoken --save-dev
 ```
 
+## 👽 Creación de verificador Token
 
+* Creo carpeta t ts middlewares\autentication.ts
+* La funcion sería: 
+```
+export const verificaToken = (req: any, res: Response, next: NextFunction) => {
+  const userToken = req.get("x-token") || "";
 
-
-
+  Token.comprobarToken(userToken)
+    .then((decoded: any) => {
+      console.log("Decoded", decoded);
+      req.usuario = decoded.usuario;
+      next();
+    })
+    .catch((err) => {
+      res.json({
+        ok: false,
+        mensaje: "Token no es correcto 👽",
+      });
+    });
+};
+```
+* Lo que hace es verificar antes de entrar en cualquier llamada y se puede user tanto para crear, borrar, grabar...
+* Su sintaxis ej:
+```
+userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
+  //Antes necesito verificar que el Token sea valido --> middlewares\autentication.ts
+  //middlewares --> se ejecuta antes de la ruta ... esta
+  res.json({
+    ok: true,
+    usuario: req.usuario,
+  });
+});
+```
 
 
 
