@@ -74,9 +74,28 @@ userRoutes.post("/create", (req, res) => {
 userRoutes.post("/update", autentication_1.verificaToken, (req, res) => {
     //Antes necesito verificar que el Token sea valido --> middlewares\autentication.ts
     //middlewares --> se ejecuta antes de la ruta ... esta
-    res.json({
-        ok: true,
-        usuario: req.usuario,
+    const user = {
+        nombre: req.body.nombre || req.usuario.nombre,
+        email: req.body.email || req.usuario.email,
+        avatar: req.body.avatar || req.usuario.avatar,
+    };
+    userModel_1.Usuario.findByIdAndUpdate(req.usuario._id, user, { new: true }).then((userDB) => {
+        if (!userDB) {
+            return res.json({
+                ok: false,
+                mensaje: "usuario incorrecto",
+            });
+        }
+        const tokenUser = token_1.default.getJwtToken({
+            _id: userDB._id,
+            nombre: userDB.nombre,
+            email: userDB.email,
+            avatar: userDB.avatar,
+        });
+        res.json({
+            ok: true,
+            token: tokenUser,
+        });
     });
 });
 exports.default = userRoutes;
