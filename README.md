@@ -6,6 +6,27 @@ Instalación MongoDB y más
 ```
 https://www.mongodb.com/try/download/community
 ```
+## Resumen para levantar app clonado o descargado () en tres terminales:
+
+1º Pauetes node
+```
+npm install
+```
+2º evantar BD 
+```
+mongod
+   Ó
+sudo mongod
+```
+3º Compilador TS(modo observador)
+```
+tsc -w
+```
+4º Ejecutar nodemon
+```
+nodemon dist/
+```
+
 ## 🎮 Comandos de mongoDB
 ```
 https://geekflare.com/es/mongodb-queries-examples/
