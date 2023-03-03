@@ -317,9 +317,10 @@ import fileUpload from 'express-fileUpload';
 ```
 npm i @types/express-fileupload --save-dev
 ```
-* Para subir img
+* Para subir img<br>
    ✔En el body<br>
 ![SubirImg](https://user-images.githubusercontent.com/71487857/222690440-5d324acd-e74a-4ea7-9c38-5cebd6b9495a.png)
-   ✔En el Headers<br>
+<br>
+   ✔En el Headers
 ![SubirImgToken](https://user-images.githubusercontent.com/71487857/222691533-4a2a650c-9028-4b64-9a8e-5c3991de1055.png)
 
