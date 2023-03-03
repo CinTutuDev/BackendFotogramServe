@@ -15,6 +15,40 @@ const userRoutes = (0, express_1.Router)();
 //-*-------------------------------------------------CREAR LOGIN-----------------------------
 userRoutes.post("/login", (req, res) => {
     const body = req.body;
+    //---------------------------------------------------CREAR USUARIO------------------------------
+    //Ruta que voy a llamar para insertar BD
+    userRoutes.post("/create", (req, res) => {
+        //req es la respuesta al posteo y el body es del bodyParse
+        //Info basic para inserción en mi bd
+        const user = {
+            nombre: req.body.nombre,
+            email: req.body.email,
+            password: bcrypt_1.default.hashSync(req.body.password, 10),
+            avatar: req.body.avatar,
+        };
+        //---------------Para GRABAR en BD---------------
+        // 1ºLlamo a mi modelo de usuario del userModel.ts:
+        //luego lo pruebo en Postman
+        userModel_1.Usuario.create(user)
+            .then((userDB) => {
+            const tokenUser = token_1.default.getJwtToken({
+                _id: userDB._id,
+                nombre: userDB.nombre,
+                email: userDB.email,
+                avatar: userDB.avatar,
+            });
+            res.json({
+                ok: true,
+                token: tokenUser,
+            });
+        })
+            .catch((err) => {
+            res.json({
+                ok: false,
+                err,
+            });
+        });
+    });
     userModel_1.Usuario.findOne({ email: body.email }).then((user) => {
         if (!user) {
             res.json({ ok: false, message: "User or password incorrect" });
@@ -33,40 +67,6 @@ userRoutes.post("/login", (req, res) => {
                 res.json({ ok: true, token: tokenUser });
             }
         }
-    });
-});
-//---------------------------------------------------CREAR USUARIO------------------------------
-//Ruta que voy a llamar para insertar BD
-userRoutes.post("/create", (req, res) => {
-    //req es la respuesta al posteo y el body es del bodyParse
-    //Info basic para inserción en mi bd
-    const user = {
-        nombre: req.body.nombre,
-        email: req.body.email,
-        password: bcrypt_1.default.hashSync(req.body.password, 10),
-        avatar: req.body.avatar,
-    };
-    //---------------Para GRABAR en BD---------------
-    // 1ºLlamo a mi modelo de usuario del userModel.ts:
-    //luego lo pruebo en Postman
-    userModel_1.Usuario.create(user)
-        .then((userDB) => {
-        const tokenUser = token_1.default.getJwtToken({
-            _id: userDB._id,
-            nombre: userDB.nombre,
-            email: userDB.email,
-            avatar: userDB.avatar,
-        });
-        res.json({
-            ok: true,
-            token: tokenUser,
-        });
-    })
-        .catch((err) => {
-        res.json({
-            ok: false,
-            err,
-        });
     });
 });
 //-------------------------------------------------------ACTUALIZAR USUARIOS------------------------------
