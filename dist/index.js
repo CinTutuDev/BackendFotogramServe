@@ -9,11 +9,15 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const post_1 = __importDefault(require("./routes/post"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
+//Para subir img
+const express_fileupload_1 = __importDefault(require("express-fileupload"));
 const server = new server_1.default();
 //Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
 //urlencoded --> x-wwww-form-urlencoded
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
+//Imagenes File Upload
+server.app.use((0, express_fileupload_1.default)());
 //Rutas de la app usuarios
 server.app.use("/user", usuario_1.default);
 //ruta post

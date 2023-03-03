@@ -40,21 +40,36 @@ postRoutes.get("/", async (req: any, res: Response) => {
   //Sacar todos reg de fomra descendente ---> const posts = await Post.find().sort({ _id: -1 }).exec();
   //que me regrese los ultimos 10 --> .limit(10)
   //Buscar paginas --> skip
-  let pg = Number(req.query.pg) || 1 ;//si regresa NAN o null 
-  let skip = pg -1;
+  let pg = Number(req.query.pg) || 1; //si regresa NAN o null
+  let skip = pg - 1;
   skip = skip * 10;
 
   const posts = await Post.find()
-                          .sort({ _id: -1 })
-                          .skip(skip)
-                          .limit(10)
-                          .populate("usuario", "-password")  
-                          .exec();
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(10)
+    .populate("usuario", "-password")
+    .exec();
 
   res.json({
     ok: true,
     pg,
     posts,
+  });
+});
+
+//--------------------------------------------------------SUBIR ARCHIVOS IMAGENES------------------------------
+
+postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
+  if (!req.files) {
+    return res.status(400).json({
+      ok: false,
+      mensaje: "No se subió ningún archivo",
+    });
+  }
+
+  res.json({
+    ok: true,
   });
 });
 
