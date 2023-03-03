@@ -26,6 +26,9 @@ tsc -w
 ```
 nodemon dist/
 ```
+## Orden para nuevas entradas a BD (usuarios, post....)
+
+1º el modelo, 2º routes y 3º index
 
 ## 🎮 Comandos de mongoDB
 ```
