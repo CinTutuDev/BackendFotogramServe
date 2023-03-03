@@ -315,5 +315,5 @@ import fileUpload from 'express-fileUpload';
 ```
 * Instalamos
 ```
-npm i --save-dev @types/express-fileupload
+npm i @types/express-fileupload --save-dev
 ```
