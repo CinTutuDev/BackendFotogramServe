@@ -6,7 +6,7 @@ Instalación MongoDB y más
 ```
 https://www.mongodb.com/try/download/community
 ```
-## Resumen para levantar app clonado o descargado () en tres terminales:
+## 🎈 Resumen para levantar app clonado o descargado (en tres terminales diferentes):
 
 1º Pauetes node
 ```
