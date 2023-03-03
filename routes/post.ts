@@ -11,7 +11,7 @@ postRoutes.post("/", [verificaToken], (req: any, res: Response) => {
   const body = req.body;
   body.usuario = req.usuario._id;
 
-  //---------------Para GRABAR en BD------------------
+  //---------------Para CREAR/GRABAR en BD------------------
 
   Post.create(body)
     .then(async (postDB) => {
@@ -31,6 +31,24 @@ postRoutes.post("/", [verificaToken], (req: any, res: Response) => {
         err,
       });
     });
+});
+
+//--------------------------------------------------------POST PAGINADOS-------------------------------------------------
+//con get peticion public
+postRoutes.get("/", async (req: any, res: Response) => {
+  //obtengo todos los registros y guardo en variable
+  //Sacar todos reg de fomra descendente ---> const posts = await Post.find().sort({ _id: -1 }).exec();
+  //que me regrese los ultimos 10 --> .limit(10)
+  const posts = await Post.find()
+                          .sort({ _id: -1 })
+                          .limit(10)
+                          .populate("usuario", "-password")  
+                          .exec();
+
+  res.json({
+    ok: true,
+    posts,
+  });
 });
 
 export default postRoutes;
