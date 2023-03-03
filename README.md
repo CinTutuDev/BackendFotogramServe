@@ -6,7 +6,7 @@ Instalación MongoDB y más
 ```
 https://www.mongodb.com/try/download/community
 ```
-## Resumen para levantar app clonado o descargado () en tres terminales:
+## 🎈 Resumen para levantar app clonado o descargado (en tres terminales diferentes):
 
 1º Pauetes node
 ```
@@ -26,6 +26,9 @@ tsc -w
 ```
 nodemon dist/
 ```
+## Orden para nuevas entradas a BD (usuarios, post....)
+
+1º el modelo, 2º routes y 3º index
 
 ## 🎮 Comandos de mongoDB
 ```
@@ -301,5 +304,7 @@ userRoutes.post("/update", verificaToken, (req: any, res: Response) => {
 });
 ```
 
+## Muestra con Postman de que funciona post 🏑 \routes\post.ts
+![PostCorrecto](https://user-images.githubusercontent.com/71487857/222498342-60c91c27-018d-4daf-ae37-4a0e6a1d5d22.png)
 
 
