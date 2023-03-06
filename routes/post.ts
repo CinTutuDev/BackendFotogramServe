@@ -88,7 +88,7 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
   }
 
   res.json({
-    ok: false,
+    ok: true,
     mansaje: "✔️",
     file: file.mimetype,
   });
