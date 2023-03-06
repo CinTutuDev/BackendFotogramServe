@@ -64,12 +64,16 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
   if (!req.files) {
     return res.status(400).json({
       ok: false,
-      mensaje: "No se subió ningún archivo",
+      mensaje: "No se subió ningún archivo 👽",
     });
   }
 
+  const file = req.files.image;
+
   res.json({
     ok: true,
+    mansaje: '✔️',
+    file
   });
 });
 
