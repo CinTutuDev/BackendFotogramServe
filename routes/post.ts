@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express";
 import { verificaToken } from "../middlewares/autentication";
 import { Post } from "../models/postModel";
+import { FileUp } from '../interfaces/fileUp';
 
 const postRoutes = Router();
 
@@ -68,12 +69,12 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
     });
   }
 
-  const file = req.files.image;
+  const file: FileUp  = req.files.image;
 
   res.json({
     ok: true,
     mansaje: '✔️',
-    file
+    file: file.mimetype
   });
 });
 
