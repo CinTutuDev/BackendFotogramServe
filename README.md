@@ -324,3 +324,8 @@ npm i @types/express-fileupload --save-dev
    ✔En el Headers<br>
 ![SubirImgToken](https://user-images.githubusercontent.com/71487857/222692034-d6d80bd3-6446-4042-9141-3b8c3628a8a5.png)
 
+## 🧠 Esquema del proceso para el tratamiento de imágenes
+![capturaEsquemaFile1](https://user-images.githubusercontent.com/71487857/223060344-bdd77e9c-91d9-4895-a798-b3d25a1696e4.jpeg)
+![capesquemaFile2](https://user-images.githubusercontent.com/71487857/223060407-5197acb3-3bb7-4ddf-85a7-ba155d892e54.png)
+
+
