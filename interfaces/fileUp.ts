@@ -10,4 +10,5 @@ export interface FileUp{
  /*  size: string, */
  /* md5": "7e73f75771e74ae2ab6d1d7b734a3804" */
 
+ mv: Function;
 }

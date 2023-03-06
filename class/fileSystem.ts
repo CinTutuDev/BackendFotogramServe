@@ -3,37 +3,47 @@ import path from "path";
 import fs from "fs";
 // npm i uniqid
 // npm i --save-dev @types/uniqid
-import uniqid from 'uniqid';
+import uniqid from "uniqid";
 
 export default class FileSystem {
   constructor() {}
 
   guardarImgTemporal(file: FileUp, userID: string) {
-   //------------------------------------------------CREAR CARPETAS---------------------------------
-    const path = this.crearCarpetaUser(userID);
-  
-    //-----------------------------------------------CREAR NOMBRE ARCH-------------------------------
-    const nombreArch = this.generarNombreUnic(file.name);
-    console.log(file.name);
-    console.log(nombreArch);
-   
-  
+    return new Promise<void>((resolve, reject) => {
+      //------------------------------------------------CREAR CARPETAS---------------------------------
+      const path = this.crearCarpetaUser(userID);
+
+      //-----------------------------------------------CREAR NOMBRE ARCH-------------------------------
+      const nombreArch = this.generarNombreUnic(file.name);
+      /*  console.log(file.name);
+    console.log(nombreArch); */
+
+      //----------------------------------------------MOVER DEL TEMP A CARPETA DE DIST/TEMP------------
+
+      file.mv(`${path}/${nombreArch}`, (err: any) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
   }
 
   /* el nombreOriginal viene del file */
-  private generarNombreUnic( nombreOriginal: string ){
-   //6.copy.jpg
-   //separo por puntos para tener las 3 posiciones
-   //necesito la ultima posicion
-   const nombreArr = nombreOriginal.split('.');
-   //aqui guardo la ultima pos
-   const extension = nombreArr[nombreArr.length -1];
-   console.log('la ultima posicion es: ' , extension);
-   //importo  npm i --save-dev @types/uniqid 
-   //npm i uniqid
-   const idUnic = uniqid();
-   
-   return `${idUnic}.${extension}`;
+  private generarNombreUnic(nombreOriginal: string) {
+    //6.copy.jpg
+    //separo por puntos para tener las 3 posiciones
+    //necesito la ultima posicion
+    const nombreArr = nombreOriginal.split(".");
+    //aqui guardo la ultima pos
+    const extension = nombreArr[nombreArr.length - 1];
+    console.log("la ultima posicion es: ", extension);
+    //importo  npm i --save-dev @types/uniqid
+    //npm i uniqid
+    const idUnic = uniqid();
+
+    return `${idUnic}.${extension}`;
   }
 
   private crearCarpetaUser(userID: string) {
