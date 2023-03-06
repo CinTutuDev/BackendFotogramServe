@@ -1,7 +1,7 @@
 import { Router, Request, Response } from "express";
 import { verificaToken } from "../middlewares/autentication";
 import { Post } from "../models/postModel";
-import { FileUp } from '../interfaces/fileUp';
+import { FileUp } from "../interfaces/fileUp";
 
 const postRoutes = Router();
 
@@ -69,12 +69,28 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
     });
   }
 
-  const file: FileUp  = req.files.image;
+  const file: FileUp = req.files.image;
+
+  /* Valida que llege la propiedad image*/
+
+  if (!file) {
+    return res.status(400).json({
+      ok: false,
+      mensaje: "No se subió ningún archivo - imagen 📸 ",
+    });
+  }
+  /* Si no incluye mimetype devuelve error */
+  if (!file.mimetype.includes("image")) {
+    return res.status(400).json({
+      ok: false,
+      mensaje: "No es una imagen 📸 ",
+    });
+  }
 
   res.json({
-    ok: true,
-    mansaje: '✔️',
-    file: file.mimetype
+    ok: false,
+    mansaje: "✔️",
+    file: file.mimetype,
   });
 });
 
