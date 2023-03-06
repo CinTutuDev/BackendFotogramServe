@@ -63,7 +63,7 @@ postRoutes.get("/", async (req: any, res: Response) => {
 
 //--------------------------------------------------------SUBIR ARCHIVOS IMAGENES------------------------------
 
-postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
+postRoutes.post("/upload", [verificaToken], async (req: any, res: Response) => {
   if (!req.files) {
     return res.status(400).json({
       ok: false,
@@ -89,7 +89,7 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
     });
   }
   /* Al llamar a esta funcion se crea la carpeta en --> BackendFotogramServe\dist\uploads\63ff9fc339f4530e87baf1f6 */
-  fileSystem.guardarImgTemporal(file, req.usuario._id);
+  await fileSystem.guardarImgTemporal(file, req.usuario._id);
 
   res.json({
     ok: true,
