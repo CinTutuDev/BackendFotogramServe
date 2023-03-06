@@ -2,8 +2,10 @@ import { Router, Request, Response } from "express";
 import { verificaToken } from "../middlewares/autentication";
 import { Post } from "../models/postModel";
 import { FileUp } from "../interfaces/fileUp";
+import FileSystem from "../class/fileSystem";
 
 const postRoutes = Router();
+const fileSystem = new FileSystem();
 
 //--------------------------CREACION DE UNA ENTRADA DE POSTEOS--------------------------------
 
@@ -86,6 +88,8 @@ postRoutes.post("/upload", [verificaToken], (req: any, res: Response) => {
       mensaje: "No es una imagen 📸 ",
     });
   }
+  /* Al llamar a esta funcion se crea la carpeta en --> BackendFotogramServe\dist\uploads\63ff9fc339f4530e87baf1f6 */
+  fileSystem.guardarImgTemporal(file, req.usuario._id);
 
   res.json({
     ok: true,

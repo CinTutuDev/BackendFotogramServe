@@ -14,15 +14,15 @@ export default class FileSystem {
     //path--> BackendFotogramServe\uploads
     const pathUser = path.resolve(__dirname, "../uploads/", userID);
     /* La priemra carga va a la carpeta temp */
-    const pathUserTem = pathUser + "/temp";
+    const pathUserTemp = path.resolve(pathUser + "/temp");
     console.log("La path: ", pathUser);
 
     /* Para saber si exites una carpeta-->  import fs from 'fs';*/
     const existe = fs.existsSync(pathUser);
     if (!existe) {
       fs.mkdirSync(pathUser);
-      fs.mkdirSync(pathUserTem);
+      fs.mkdirSync(pathUserTemp);
     }
-    return pathUserTem;
+    return pathUserTemp;
   }
 }
