@@ -7,7 +7,7 @@ const postSchema = new Schema({
   mensaje: {
     type: String,
   },
-  img: [
+  imgs: [
     {
       type: String,
     },
@@ -24,12 +24,11 @@ const postSchema = new Schema({
 
 //PAra que se cree la fecha de forma automantica en el posteo
 
-postSchema.pre("save", function (next) {
+postSchema.pre<IPost>('save', function( next ) {
   this.created = new Date();
   next();
 });
-
-export interface IPost extends Document {
+interface IPost extends Document {
   created: Date;
   mensaje: string;
   img: string[];
@@ -37,4 +36,4 @@ export interface IPost extends Document {
   usuario: string;
 }
 
-export const Post = model<IPost>("Post", postSchema);
+export const Post = model<IPost>('Post', postSchema);

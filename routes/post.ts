@@ -14,11 +14,16 @@ postRoutes.post("/", [verificaToken], (req: any, res: Response) => {
   const body = req.body;
   body.usuario = req.usuario._id;
 
+  //Array para guardar en la carpeta \dist\uploads\post
+  //creo el metodo en class\fileSystem.ts
+  const imagenes = fileSystem.imagenesDeTempHaciaPost( req.usuario._id );
+  body.imgs = imagenes;
+
   //---------------Para CREAR/GRABAR en BD------------------
 
   Post.create(body)
     .then(async (postDB) => {
-      //
+  
       //Aparezca todo el objeto del usuario, para que no aparezca el pass cpn (-)
       await postDB.populate("usuario", "-password");
 
@@ -64,38 +69,48 @@ postRoutes.get("/", async (req: any, res: Response) => {
 //--------------------------------------------------------SUBIR ARCHIVOS IMAGENES------------------------------
 
 postRoutes.post("/upload", [verificaToken], async (req: any, res: Response) => {
-  if (!req.files) {
+  if ( !req.files ) {
     return res.status(400).json({
-      ok: false,
-      mensaje: "No se subió ningún archivo 👽",
+        ok: false,
+        mensaje: 'No se subió ningun archivo'
     });
-  }
+}
 
-  const file: FileUp = req.files.image;
+const file: FileUp = req.files.image;
 
-  /* Valida que llege la propiedad image*/
-
-  if (!file) {
+if ( !file ) {
     return res.status(400).json({
-      ok: false,
-      mensaje: "No se subió ningún archivo - imagen 📸 ",
+        ok: false,
+        mensaje: 'No se subió ningun archivo - image'
     });
-  }
-  /* Si no incluye mimetype devuelve error */
-  if (!file.mimetype.includes("image")) {
-    return res.status(400).json({
-      ok: false,
-      mensaje: "No es una imagen 📸 ",
-    });
-  }
-  /* Al llamar a esta funcion se crea la carpeta en --> BackendFotogramServe\dist\uploads\63ff9fc339f4530e87baf1f6 */
-  await fileSystem.guardarImgTemporal(file, req.usuario._id);
+}
 
-  res.json({
+if ( !file.mimetype.includes('image') ) {
+    return res.status(400).json({
+        ok: false,
+        mensaje: 'Lo que subió no es una imagen'
+    }); 
+}
+
+await fileSystem.guardarImagenTemporal( file, req.usuario._id );
+
+res.json({
     ok: true,
-    mansaje: "✔️",
-    file: file.mimetype,
-  });
+    file: file.mimetype
+});
+});
+
+
+
+postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
+
+  const userId = req.params.userid;
+  const img    = req.params.img;
+
+  const pathFoto = fileSystem.getFotoUrl( userId, img );
+
+  res.sendFile( pathFoto );
+
 });
 
 export default postRoutes;
