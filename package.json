@@ -26,12 +26,14 @@
     "mongoose": "^7.0.0",
     "nodemon": "^2.0.20",
     "npx": "^10.2.2",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "uniqid": "^5.4.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
     "@types/express-fileupload": "^1.4.1",
-    "@types/jsonwebtoken": "^9.0.1"
+    "@types/jsonwebtoken": "^9.0.1",
+    "@types/uniqid": "^5.3.2"
   }
 }
