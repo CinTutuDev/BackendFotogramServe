@@ -338,3 +338,13 @@ npm i @types/express-fileupload --save-dev
  import uniqid from 'uniqid';
  const idUnic = uniqid();
 ```
+## Mostrar la imagen en postman
+
+* Nota ❗❗ el id no es el de usuario sino: ObjectId("64070881d1a2a2a26552246e")
+* ![IdCorrecto](https://user-images.githubusercontent.com/71487857/223400482-3ffcaa7e-087c-433a-8dcb-2b7be074663b.png)
+* La petición sería así:
+``` 
+GET localhost:3000/posts/imagen/64070881d1a2a2a26552246e/19j9awkrkley2myyy.png
+```
+
+
