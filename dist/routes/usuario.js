@@ -97,4 +97,13 @@ userRoutes.post("/update", autentication_1.verificaToken, (req, res) => {
         });
     });
 });
+//----------------------------------------Devolver INFORMACIÓN DEL TOKEN-----------------------------------
+//Para validar las rutas
+userRoutes.get("/", autentication_1.verificaToken, (req, res) => {
+    const usuario = req.usuario;
+    res.json({
+        ok: true,
+        usuario
+    });
+});
 exports.default = userRoutes;
