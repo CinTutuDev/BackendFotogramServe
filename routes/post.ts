@@ -102,14 +102,20 @@ res.json({
 
 
 
+
 postRoutes.get('/imagen/:userid/:img', (req: any, res: Response) => {
 
   const userId = req.params.userid;
   const img    = req.params.img;
 
+
   const pathFoto = fileSystem.getFotoUrl( userId, img );
 
-  res.sendFile( pathFoto );
+
+  res.sendFile(pathFoto);
+ /*  const pathFoto = fileSystem.getFotoUrl( userId, img );
+
+  res.sendFile( pathFoto ); */
 
 });
 

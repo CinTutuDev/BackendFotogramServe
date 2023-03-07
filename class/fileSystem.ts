@@ -46,7 +46,7 @@ export default class FileSystem {
     return `${ idUnico }.${ extension }`;
   }
 
-  private crearCarpetaUser(userId: string) {
+  private crearCarpetaUser(userId : string) {
     const pathUser = path.resolve(  __dirname, '../uploads/', userId );
     const pathUserTemp = pathUser + '/temp';
     // console.log(pathUser);
@@ -103,9 +103,8 @@ getFotoUrl( userId: string, img: string ) {
   // Si la imagen existe
   const existe = fs.existsSync( pathFoto );
   if ( !existe ) {
-      return path.resolve( __dirname, '../assets/400x250.jpg' );
+      return path.resolve( __dirname, '../assets/banner.jpg' );
   }
-
 
   return pathFoto;
 
