@@ -18,6 +18,12 @@ server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 //Imagenes File Upload
 server.app.use((0, express_fileupload_1.default)());
+server.app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 //Rutas de la app usuarios
 server.app.use("/user", usuario_1.default);
 //ruta post
@@ -27,4 +33,5 @@ mongoose_1.default.connect("mongodb://127.0.0.1:27017/fotosgramTutu");
 //Levantar Express
 server.start(() => {
     console.log(`Servidor corriendo en puerto${server.port}`);
+    console.log('Base de datos ONLINE');
 });
