@@ -6,7 +6,7 @@ import postRoutes from "./routes/post";
 import userRoutes from "./routes/usuario";
 //Para subir img
 import fileUpload from "express-fileupload";
-
+import  cors  from "cors";
 const server = new Server();
 
 //Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
@@ -17,12 +17,16 @@ server.app.use(bodyParser.json());
 //Imagenes File Upload
 server.app.use(fileUpload());
 
-server.app.use((req, res, next) => {
+//configuracion CORS
+/* server.app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+ */
+
+server.app.use(cors({origin:true, credentials: true}));
 
 
 //Rutas de la app usuarios

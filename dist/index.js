@@ -11,6 +11,7 @@ const post_1 = __importDefault(require("./routes/post"));
 const usuario_1 = __importDefault(require("./routes/usuario"));
 //Para subir img
 const express_fileupload_1 = __importDefault(require("express-fileupload"));
+const cors_1 = __importDefault(require("cors"));
 const server = new server_1.default();
 //Body parse (es una función q se ejecuta (post, puts) cualquier peticion y preprara el objeto )
 //urlencoded --> x-wwww-form-urlencoded
@@ -18,12 +19,15 @@ server.app.use(body_parser_1.default.urlencoded({ extended: true }));
 server.app.use(body_parser_1.default.json());
 //Imagenes File Upload
 server.app.use((0, express_fileupload_1.default)());
-server.app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
+//configuracion CORS
+/* server.app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
 });
+ */
+server.app.use((0, cors_1.default)({ origin: true, credentials: true }));
 //Rutas de la app usuarios
 server.app.use("/user", usuario_1.default);
 //ruta post
